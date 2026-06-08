@@ -1,17 +1,104 @@
 [
   {
+    "id": 1,
     "question": "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo Điều 249 Bộ luật Hình sự?",
     "expected_answer": "Phạt tù từ 1 đến 5 năm đối với trường hợp tàng trữ từ 1g đến dưới 5g heroin hoặc cocaine, hoặc chất ma tuý khác với khối lượng tương đương.",
     "expected_context": "Bộ luật Hình sự 2015, Điều 249"
   },
   {
+    "id": 2,
     "question": "Luật Phòng chống ma tuý 2021 quy định những hình thức cai nghiện nào?",
     "expected_answer": "Cai nghiện tự nguyện tại gia đình, cai nghiện tự nguyện tại cộng đồng, cai nghiện tự nguyện tại cơ sở cai nghiện, và cai nghiện bắt buộc tại cơ sở cai nghiện.",
     "expected_context": "Luật Phòng chống ma tuý 2021, Chương V"
   },
   {
+    "id": 3,
     "question": "Danh mục các chất ma tuý thuộc nhóm I theo quy định pháp luật Việt Nam gồm những chất nào?",
     "expected_answer": "Nhóm I gồm các chất ma tuý tuyệt đối cấm sử dụng trong y học và đời sống, bao gồm heroin, cocaine, methamphetamine, MDMA (ecstasy), cannabis (cần sa), và các chất tương tự.",
     "expected_context": "Nghị định 57/2022/NĐ-CP, Phụ lục I"
+  },
+  {
+    "id": 4,
+    "question": "Tội mua bán trái phép chất ma tuý theo Điều 251 Bộ luật Hình sự bị xử phạt như thế nào?",
+    "expected_answer": "Người phạm tội bị phạt tù từ 2 đến 7 năm. Nếu có tình tiết tăng nặng như phạm tội có tổ chức, số lượng lớn hoặc tái phạm nguy hiểm, mức phạt có thể lên tới 20 năm, tù chung thân hoặc tử hình.",
+    "expected_context": "Bộ luật Hình sự 2015, Điều 251"
+  },
+  {
+    "id": 5,
+    "question": "Ai có thẩm quyền quyết định đưa người nghiện ma tuý vào cơ sở cai nghiện bắt buộc?",
+    "expected_answer": "Toà án nhân dân cấp huyện có thẩm quyền quyết định đưa người nghiện ma tuý vào cơ sở cai nghiện bắt buộc theo quy định của Luật Phòng chống ma tuý 2021 và Luật Xử lý vi phạm hành chính.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Điều 32"
+  },
+  {
+    "id": 6,
+    "question": "Luật Phòng chống ma tuý số 73/2021/QH15 có hiệu lực từ ngày nào?",
+    "expected_answer": "Luật Phòng chống ma tuý số 73/2021/QH15 có hiệu lực thi hành từ ngày 01 tháng 01 năm 2022.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Điều 55"
+  },
+  {
+    "id": 7,
+    "question": "Tiền chất ma tuý được định nghĩa như thế nào theo pháp luật Việt Nam?",
+    "expected_answer": "Tiền chất ma tuý là các hoá chất không thể thiếu được trong quá trình điều chế, sản xuất chất ma tuý, được quy định trong danh mục do Chính phủ ban hành. Các tiền chất này bị kiểm soát chặt chẽ về sản xuất, xuất nhập khẩu và sử dụng.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Điều 2; Nghị định về tiền chất"
+  },
+  {
+    "id": 8,
+    "question": "Người chưa thành niên nghiện ma tuý từ đủ 12 tuổi đến dưới 18 tuổi được xử lý như thế nào theo Luật Phòng chống ma tuý 2021?",
+    "expected_answer": "Người chưa thành niên nghiện ma tuý từ đủ 12 tuổi đến dưới 18 tuổi được đưa vào cơ sở cai nghiện bắt buộc theo quyết định của Toà án. Thời gian cai nghiện bắt buộc từ 6 tháng đến 12 tháng. Ưu tiên áp dụng biện pháp cai nghiện tự nguyện trước.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Điều 33"
+  },
+  {
+    "id": 9,
+    "question": "Tội tổ chức sử dụng trái phép chất ma tuý theo Bộ luật Hình sự bị phạt tù tối đa bao nhiêu năm?",
+    "expected_answer": "Theo Điều 255 Bộ luật Hình sự 2015, tội tổ chức sử dụng trái phép chất ma tuý có thể bị phạt tù tối đa là 20 năm hoặc tù chung thân trong trường hợp phạm tội đặc biệt nghiêm trọng.",
+    "expected_context": "Bộ luật Hình sự 2015, Điều 255"
+  },
+  {
+    "id": 10,
+    "question": "Hình phạt tử hình được áp dụng cho tội phạm ma tuý trong trường hợp nào?",
+    "expected_answer": "Hình phạt tử hình được áp dụng cho tội sản xuất trái phép chất ma tuý (Điều 248) và tội mua bán trái phép chất ma tuý (Điều 251) khi phạm tội với số lượng rất lớn, ví dụ heroin hoặc cocaine từ 1kg trở lên, hoặc nhựa thuốc phiện từ 50kg trở lên.",
+    "expected_context": "Bộ luật Hình sự 2015, Điều 248, Điều 251"
+  },
+  {
+    "id": 11,
+    "question": "Cơ quan nào có thẩm quyền kiểm soát hoạt động hợp pháp liên quan đến tiền chất ma tuý tại Việt Nam?",
+    "expected_answer": "Bộ Công an chủ trì phối hợp với Bộ Y tế, Bộ Công Thương và các cơ quan liên quan kiểm soát hoạt động hợp pháp liên quan đến tiền chất ma tuý, bao gồm cấp phép, kiểm tra, thanh tra và xử lý vi phạm.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Điều 43-45"
+  },
+  {
+    "id": 12,
+    "question": "Người tự nguyện cai nghiện ma tuý tại gia đình hoặc cộng đồng được nhà nước hỗ trợ những gì?",
+    "expected_answer": "Nhà nước hỗ trợ chi phí tư vấn, điều trị, phục hồi chức năng cho người cai nghiện tự nguyện; hỗ trợ người sau cai nghiện hoà nhập cộng đồng, vay vốn tạo việc làm và được miễn, giảm học phí cho con em.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Chương V, Điều 28-30"
+  },
+  {
+    "id": 13,
+    "question": "Vụ án của ca sĩ Châu Việt Cường liên quan đến ma tuý như thế nào?",
+    "expected_answer": "Ca sĩ Châu Việt Cường bị bắt năm 2018 trong vụ án cô gái tử vong sau khi bị ép uống tỏi có lẫn ma tuý. Anh bị truy tố về tội giết người và tội tàng trữ trái phép chất ma tuý, bị tuyên phạt 13 năm tù.",
+    "expected_context": "Bài báo về vụ án Châu Việt Cường, 2018-2019"
+  },
+  {
+    "id": 14,
+    "question": "Nghệ sĩ nào bị bắt giữ vì sử dụng ma tuý và bị cấm biểu diễn tại Việt Nam?",
+    "expected_answer": "Nhiều nghệ sĩ Việt Nam bị bắt vì sử dụng ma tuý và bị cấm biểu diễn, trong đó có Phạm Anh Khoa (2019), Dương Minh Tuyền, và một số ca sĩ, diễn viên khác. Bộ Văn hoá, Thể thao và Du lịch ra quyết định đình chỉ hoạt động biểu diễn với những người vi phạm.",
+    "expected_context": "Bài báo về nghệ sĩ Việt Nam và ma tuý"
+  },
+  {
+    "id": 15,
+    "question": "Phạm Anh Khoa bị cáo buộc điều gì liên quan đến ma tuý?",
+    "expected_answer": "Phạm Anh Khoa, thành viên ban nhạc Bức Tường, bị bắt và thừa nhận sử dụng ma tuý tổng hợp. Sau đó anh bị cấm biểu diễn và tạm dừng hoạt động nghệ thuật để chấp hành quy định của cơ quan quản lý.",
+    "expected_context": "Bài báo về Phạm Anh Khoa và ma tuý, 2019"
+  },
+  {
+    "id": 16,
+    "question": "Hậu quả pháp lý và nghề nghiệp của việc nghệ sĩ sử dụng ma tuý tại Việt Nam là gì?",
+    "expected_answer": "Nghệ sĩ sử dụng ma tuý có thể bị xử phạt hành chính, bắt buộc cai nghiện, bị cấm biểu diễn theo quy định của Bộ Văn hoá, đồng thời mất hợp đồng quảng cáo, bị nhà sản xuất và các đơn vị tổ chức biểu diễn từ chối hợp tác.",
+    "expected_context": "Luật Phòng chống ma tuý 2021; Nghị định xử phạt hành chính; Bài báo về nghệ sĩ"
+  },
+  {
+    "id": 17,
+    "question": "Nghị định 105/2021/NĐ-CP hướng dẫn thi hành Luật Phòng chống ma tuý quy định về vấn đề gì?",
+    "expected_answer": "Nghị định 105/2021/NĐ-CP quy định chi tiết về quản lý người sử dụng trái phép chất ma tuý, lập hồ sơ đề nghị áp dụng biện pháp xử lý hành chính đưa vào cơ sở cai nghiện bắt buộc, tổ chức cai nghiện tự nguyện tại cộng đồng và gia đình.",
+    "expected_context": "Nghị định 105/2021/NĐ-CP"
   }
 ]
