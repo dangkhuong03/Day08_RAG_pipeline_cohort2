@@ -5,8 +5,8 @@ Design choices:
 - top_k=5: Đủ evidence mà không quá dài gây "lost in the middle"
 - top_p=0.9: Nucleus sampling — đủ diverse, không quá random
 - temperature=0.3: RAG cần factual, ít sáng tạo (closer to deterministic)
-- Model: gpt-4o-mini (cost-effective, good context length)
-  Fallback: claude-3-haiku nếu không có OpenAI key
+- Model: gemini-3.1-flash-lite (preferred, stable multilingual)
+  Fallback: gpt-4o-mini hoặc claude-3-haiku if no Gemini key
 
 Document reordering tránh "lost in the middle" (Liu et al. 2023):
     LLM chú ý tốt nhất tới đầu và cuối prompt.
@@ -168,13 +168,16 @@ def generate_with_citation(query: str, context_chunks: list[dict] | None = None,
 
 def _call_llm(user_message: str) -> str:
     """
-    Call LLM với OpenAI (fallback to Claude if no OpenAI key).
+    Call LLM với Gemini (fallback to OpenAI hoặc Claude if no Gemini key).
     Trả về "I cannot verify..." nếu không có API key nào.
     """
+    gemini_key = os.getenv("GEMINI_API_KEY", "")
     openai_key = os.getenv("OPENAI_API_KEY", "")
     anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
 
-    if openai_key and openai_key.startswith("sk-"):
+    if gemini_key:
+        return _call_gemini(user_message, gemini_key)
+    elif openai_key and openai_key.startswith("sk-"):
         return _call_openai(user_message, openai_key)
     elif anthropic_key:
         return _call_anthropic(user_message, anthropic_key)
@@ -182,8 +185,27 @@ def _call_llm(user_message: str) -> str:
         log.warning("No LLM API key found. Returning placeholder response.")
         return (
             "Tôi không thể xác minh thông tin này từ nguồn hiện có — "
-            "vui lòng cấu hình OPENAI_API_KEY hoặc ANTHROPIC_API_KEY trong file .env."
+            "vui lòng cấu hình GEMINI_API_KEY, OPENAI_API_KEY hoặc ANTHROPIC_API_KEY trong file .env."
         )
+
+
+def _call_gemini(user_message: str, api_key: str) -> str:
+    """Call Google Gemini API using new google-genai SDK."""
+    from google import genai
+    from google.genai import types
+
+    client = genai.Client(api_key=api_key)
+    response = client.models.generate_content(
+        model="gemini-3.1-flash-lite",
+        contents=user_message,
+        config=types.GenerateContentConfig(
+            system_instruction=SYSTEM_PROMPT,
+            temperature=TEMPERATURE,
+            top_p=TOP_P,
+            max_output_tokens=1500,
+        )
+    )
+    return response.text
 
 
 def _call_openai(user_message: str, api_key: str) -> str:

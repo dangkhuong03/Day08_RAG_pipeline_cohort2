@@ -82,7 +82,10 @@ def evaluate_with_ragas(pipeline, golden_dataset: list[dict]):
                                    faithfulness, answer_relevancy,
                                    context_recall, context_precision
     """
+    import os
+    import time
     from ragas import evaluate
+    from ragas.run_config import RunConfig
     from ragas.metrics import (
         faithfulness,
         answer_relevancy,
@@ -98,7 +101,12 @@ def evaluate_with_ragas(pipeline, golden_dataset: list[dict]):
         "ground_truth": [],
     }
 
-    for item in golden_dataset:
+    # Step 1: Sinh câu trả lời từ pipeline với khoảng nghỉ 5s để tránh Rate Limit (15 RPM)
+    for idx, item in enumerate(golden_dataset):
+        if idx > 0:
+            log.info("Sleeping 5 seconds to respect Gemini rate limits (15 RPM)...")
+            time.sleep(5.0)
+
         try:
             result = pipeline.generate(item["question"])
             contexts = [c["content"] for c in result.get("sources", []) if c.get("content")]
@@ -109,13 +117,48 @@ def evaluate_with_ragas(pipeline, golden_dataset: list[dict]):
 
         eval_data["question"].append(item["question"])
         eval_data["answer"].append(result.get("answer", ""))
-        eval_data["contexts"].append(contexts or [""])  # RAGAS requires non-empty list
+        eval_data["contexts"].append(contexts or [""])  # RAGAS yêu cầu danh sách không rỗng
         eval_data["ground_truth"].append(item["expected_answer"])
 
     dataset = Dataset.from_dict(eval_data)
+
+    # Step 2: Cấu hình Ragas sử dụng Gemini làm giám khảo (nếu có key)
+    gemini_key = os.getenv("GEMINI_API_KEY", "")
+    ragas_kwargs = {}
+
+    if gemini_key:
+        log.info("Configuring RAGAS to use Gemini for evaluation...")
+        from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+        from ragas.llms import LangchainLLMWrapper
+        from ragas.embeddings import LangchainEmbeddingsWrapper
+
+        gemini_llm = ChatGoogleGenerativeAI(
+            model="gemini-3.1-flash-lite",
+            google_api_key=gemini_key,
+            temperature=0.0
+        )
+        gemini_embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/embedding-001",
+            google_api_key=gemini_key
+        )
+
+        ragas_kwargs["llm"] = LangchainLLMWrapper(gemini_llm)
+        ragas_kwargs["embeddings"] = LangchainEmbeddingsWrapper(gemini_embeddings)
+    else:
+        log.warning("GEMINI_API_KEY not found in .env. RAGAS will fallback to OpenAI default.")
+
+    # Step 3: Thiết lập RunConfig chạy tuần tự để tránh Rate Limit
+    run_config = RunConfig(
+        max_workers=1,      # Chạy tuần tự 1 luồng
+        max_retries=10,     # Tự động thử lại 10 lần nếu bị chặn (HTTP 429)
+        timeout=180,
+    )
+
     result = evaluate(
         dataset,
         metrics=[faithfulness, answer_relevancy, context_recall, context_precision],
+        run_config=run_config,
+        **ragas_kwargs
     )
     return result.to_pandas()
 

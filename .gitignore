@@ -1,0 +1,30 @@
+# Environment variables (chứa API keys nhạy cảm)
+.env
+
+# Python caching & build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Môi trường ảo (Virtual environments)
+venv/
+.venv/
+env/
+ENV/
+
+# Dữ liệu cục bộ & Vector Database (ChromaDB)
+data/chroma/
+.chroma/
+
+# Cấu hình IDE cá nhân
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
